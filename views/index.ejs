@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad App</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Notepad App</h1>
+            <form id="noteForm" method="post" action="/save-note">
+                <div class="form-group">
+                    <label for="fileName">File Name</label>
+                    <input type="text" id="fileName" name="fileName" placeholder="Enter file name" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" id="taskName" name="taskName" placeholder="Enter task name" required>
+                </div>
+                <div class="form-group">
+                    <label for="notepad">Notes</label>
+                    <textarea id="notepad" name="content" placeholder="Start typing your notes here..." required></textarea>
+                </div>
+                <button type="submit" id="createBtn">Create</button>
+            </form>
+        </div>
+
+        <% if (files.length > 0) { %>
+            <div class="cards-container">
+                <% files.forEach(function(file) { %>
+                    <div class="card">
+                        <div class="card-content">
+                            <h2 class="card-title"><%= file %></h2>
+                            <h3 class="card-text">Click on Readmore for details....</h3>
+                            <a class="card-button" href="/filename/<%= file %>">Read More</a> 
+                            <a class="card-button" href= "/edit/<%= file %>">Edit</a>
+                            <a type="submit" class="card-button"href="/del/<%= file %>">Delete</a>
+
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <h3>No tasks yet</h3>
+        <% } %>
+    </div>
+
+    <script src="/javascripts/index.js"></script>
+</body>
+</html>
